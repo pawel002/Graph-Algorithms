@@ -5,7 +5,7 @@ import time
 
 (V,L) = loadWeightedGraph(os.path.abspath('lab1\graphs\grid100x100'))     # wczytaj graf
 
-def union(V, L):
+def union1(V, L):
     L.sort(key=lambda x: x[2], reverse=True)
     parent = [i for i in range(V + 1)]
     idx = 0
@@ -37,28 +37,30 @@ def union(V, L):
             return L[idx-1][2]
 
 
-
 # tester
 cum_time = 0
 tests_passed = 0
 tests_count = len(os.listdir("lab1/graphs"))
+print("-" * 20 + "TESTS" + '-' * 20)
 for i, graph in enumerate(os.listdir("lab1/graphs")):
     (V, L) = loadWeightedGraph(os.path.abspath("lab1/graphs/" + graph))
     name = graph.split("/")[-1]
     solution = readSolution(os.path.abspath("lab1/graphs/" + graph))
     start = time.time()
-    result = union(V, L)
+    result = union1(V, L)
     stop = time.time()
     if result == int(solution):
         tests_passed += 1
-        print("TEST ", i, ", ", name ," PASSED. TIME ", stop - start, " ms.", sep="")
+        # print("TEST ", i, ", ", name ," PASSED.", f"{'TIME: '  :<20}", stop - start, " ms.", sep="")
+        print(f"{'TEST'}{i : >3}{' PASSED. TIME: '}{stop - start :.2f}{'ms. Test Name: '}{name}{'.'}")
     else:
-        print("TEST ", i, ", ", name ," FAILED. TIME ", stop - start, " ms.", sep="")
-        print("Your solution: ", result, ". Expected: ", solution, ".", sep="")
+        print(f"{'TEST'}{i : >3}{' FAILED. TIME: '}{stop - start :.2f}{'ms.'}{name}{'.'}")
+        print(f"{'Your solution: '}{result}{'. Exprected: '}{solution}{'.'}")
     cum_time += stop - start
 
-print("PASSED " , tests_passed, "/", tests_count, ".", sep="")
-print("TESTS TOOK:", cum_time)
+print("-" * 50)
+print(f"{'PASSED '}{tests_passed}{'/'}{tests_count}{'.'}")
+print(f"{'TESTS TOOK: '}{cum_time :.2f}{'ms.'}")
 
     
 
