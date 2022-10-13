@@ -51,11 +51,11 @@ for i, graph in enumerate(os.listdir("lab1/graphs")):
     stop = time.time()
     if result == int(solution):
         tests_passed += 1
-        # print("TEST ", i, ", ", name ," PASSED.", f"{'TIME: '  :<20}", stop - start, " ms.", sep="")
-        print(f"{'TEST'}{i : >3}{' PASSED. TIME: '}{stop - start :.2f}{'ms. Test Name: '}{name}{'.'}")
+        print(f"{'TEST'}{i+1 : >3}{' PASSED. TIME: '}{stop - start :.2f}{'ms. Test Name: '}{name}{'.'}")
     else:
-        print(f"{'TEST'}{i : >3}{' FAILED. TIME: '}{stop - start :.2f}{'ms.'}{name}{'.'}")
-        print(f"{'Your solution: '}{result}{'. Exprected: '}{solution}{'.'}")
+        print(f"{'TEST'}{i+1 : >3}{' FAILED. TIME: '}{stop - start :.2f}{'ms. Test Name: '}{name}{'.'}")
+        print(f"{'Your solution: '}{result}{'.'}")
+        print(f"{'Correct value: '}{solution}{'.'}")
     cum_time += stop - start
 
 print("-" * 50)
