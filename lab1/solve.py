@@ -57,16 +57,16 @@ def tester(func):
 
         if result == int(solution):
             tests_passed += 1
-            print(f"{'TEST'}{i+1 : >3}{' PASSED. TIME: '}{stop - start :.2f}{'ms. Test Name: '}{name}{'.'}")
+            print(f"{'TEST'}{i+1 : >3}{' PASSED. TIME: '}{stop - start :.2f}{'s. Test Name: '}{name}{'.'}")
         else:
-            print(f"{'TEST'}{i+1 : >3}{' FAILED. TIME: '}{stop - start :.2f}{'ms. Test Name: '}{name}{'.'}")
+            print(f"{'TEST'}{i+1 : >3}{' FAILED. TIME: '}{stop - start :.2f}{'s. Test Name: '}{name}{'.'}")
             print(f"{'Your solution: '}{result}{'.'}")
             print(f"{'Correct value: '}{solution}{'.'}")
         cum_time += stop - start
 
     print("-" * 50)
     print(f"{'PASSED '}{tests_passed}{'/'}{tests_count}{'.'}")
-    print(f"{'TESTS TOOK: '}{cum_time :.2f}{'ms.'}")
+    print(f"{'TESTS TOOK: '}{cum_time :.2f}{'s.'}")
 
 if __name__ == '__main__':
     tester(union)
