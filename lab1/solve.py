@@ -4,7 +4,7 @@ import os
 import time
 
 
-(V,L) = loadWeightedGraph(os.path.abspath('lab1\graphs\grid100x100'))     # wczytaj graf
+(V,L) = loadWeightedGraph(os.path.abspath('lab2\\graphs\\flow\\grid5x5'))     # wczytaj graf
 
 def union(V, L):
     L.sort(key=lambda x: x[2], reverse=True)
