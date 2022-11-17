@@ -21,12 +21,6 @@ def BFS(s, t, parent, graph, adj_list, V):
                 visited[v] = True
                 parent[v] = u
 
-        # for ind, val in enumerate(graph[u]):
-        #     if (visited[ind] == False) and (val > 0):
-        #         queue.append(ind)
-        #         visited[ind] = True
-        #         parent[ind] = u
-
     return visited[t]
 
 def ford_flukerson(V, graph, adj_list, source, sink):
