@@ -6,18 +6,23 @@ import collections
 import heapq
 import signal
 
-(V, L) = loadDirectedWeightedGraph(os.path.abspath('lab2\\graphs\\connectivity\\clique5'))     # wczytaj graf
+(V, L) = loadDirectedWeightedGraph(os.path.abspath('lab3\\graphs\\clique5 copy'))     # wczytaj graf
 
 def stoer_wagner(V, L):
     graph = [[] for _ in range(V)]
     edges = [0 for i in range(V)]
     visited = [False for i in range(V)]
     s = [0 for i in range(V)]
-    que = [[0, 0]]
 
     for (u, v, e) in L:
         graph[u-1].append(v-1)
         graph[v-1].append(u-1)
+    
+    min_edge, min_edges = 0, len(graph[0])
+    for i, x in enumerate(graph):
+        if len(x) < min_edges:
+            min_edge = i
+    que = [[0, min_edge]]
     
     for i in range(V):
         while True:
@@ -35,7 +40,7 @@ def stoer_wagner(V, L):
                 continue
             edges[v] += 1
             heapq.heappush(que, (-edges[v], v))
-    
+
     curr_connectivity = 0
     merged_weights = [0 for i in range(V)]
     merged_visited = [False for i in range(V)]
@@ -84,5 +89,6 @@ def tester(func, time_limit, path):
     print(f"{'TESTS TOOK: '}{cum_time :.2f}{'s.'}")
     
 tester(stoer_wagner, 5,"lab3/graphs")
+
 
 
