@@ -5,6 +5,8 @@ import time
 import collections
 import heapq
 import signal
+from networkx.algorithms.connectivity.stoerwagner import stoer_wagner
+import networkx as nx
 
 (V, L) = loadDirectedWeightedGraph(os.path.abspath('lab3\\graphs\\clique5 copy'))     # wczytaj graf
 
@@ -87,7 +89,7 @@ def tester(func, time_limit, path):
     print("-" * 50)
     print(f"{'PASSED '}{tests_passed}{'/'}{tests_count}{'.'}")
     print(f"{'TESTS TOOK: '}{cum_time :.2f}{'s.'}")
-    
+
 tester(stoer_wagner, 5,"lab3/graphs")
 
 
