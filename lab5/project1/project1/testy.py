@@ -3,7 +3,7 @@
 
 import sys
 
-TIMER = True
+TIMER = False
 # RERAISE = False
 RERAISE = True
 ALLOWED_TIME = 1
@@ -35,7 +35,7 @@ def list2str( L ):
     s = s[:-1]
   return s
 
-def limit( L, lim=120 ):
+def limit( L, lim=200 ):
   x = str( L )
   if len(x) < lim:
     return x
@@ -79,7 +79,7 @@ def internal_runtests( printarg, printhint, printsol, check, TESTS, f ):
       printsol( sol )
       res = check( *arg, hint, sol )
       if res: passed += 1
-      print("Orientacyjny czas: %.2f sek." % float(time_e-time_s))
+      print("Orientacyjny czas: %.5f sek." % float(time_e-time_s))
       total_time += float(time_e-time_s)
     except TimeOut:
       print("!!!!!!!! PRZEKROCZONY DOPUSZCZALNY CZAS")
@@ -92,6 +92,6 @@ def internal_runtests( printarg, printhint, printsol, check, TESTS, f ):
 
   print("-----------------")
   print("Liczba zaliczonych testów: %d/%d" % (passed,total) )
-  print("Orientacyjny łączny czas : %.2f sek." % total_time )
+  print("Orientacyjny łączny czas : %.5f sek." % total_time )
 
-  print_err(sys.argv[0].replace("_"," ").replace(".py",""), passed, total, "%.2f" % total_time)
+  print_err(sys.argv[0].replace("_"," ").replace(".py",""), passed, total, "%.5f" % total_time)

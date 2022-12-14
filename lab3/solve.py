@@ -5,8 +5,6 @@ import time
 import collections
 import heapq
 import signal
-from networkx.algorithms.connectivity.stoerwagner import stoer_wagner
-import networkx as nx
 
 (V, L) = loadDirectedWeightedGraph(os.path.abspath('lab3\\graphs\\clique5 copy'))     # wczytaj graf
 
