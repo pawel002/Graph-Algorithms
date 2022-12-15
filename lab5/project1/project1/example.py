@@ -1,5 +1,6 @@
 from data import runtests
 import bisect
+import heapq
 
 def my_solve(N, M, K, bases, wages, eq_cost):
     for i in range(len(wages)):
@@ -72,20 +73,63 @@ def cracked(N, M, K, bases, wages, eq_cost):
     
     for _ in range(K):
 
+            
         S += bases[0][bases[0][0] + 1]
         if bases[0][0] != 0:
             S -= bases[0][bases[0][0]]
         
         bases[0][0] += 1
+
         if bases[0][0] == len(bases[0]) - 1:
             bases.pop(0)
-        
-        index = bisect.bisect(bases, bases[0][bases[0][0] + 1], key=lambda x: x[x[0] + 1])
-        if index != 0:
-            t = bases.pop(0)
-            bases.insert(index, t)
+        else:
+            index = bisect.bisect(bases,
+                                  bases[0][bases[0][0] + 1] - bases[0][bases[0][0]],
+                                  key=lambda x: x[x[0] + 1] if x[0] == 0 else x[x[0] + 1] - x[x[0]])
+            if index != 0:
+                t = bases.pop(0)
+                bases.insert(index - 1, t)
     
     return S
 
-runtests(cracked)
+def cracked_more(N, M, K, bases, wages, eq_cost):
+    for i in range(len(wages)):
+        for j in range(len(wages[i])):
+            wages[i][j] = [wages[i][j][0] - 1, wages[i][j][1] + eq_cost[wages[i][j][0] - 1]]
+    
+    for wage in wages:
+        wage.sort(key=lambda x: x[1])
+    
+    for i in range(len(bases)):
+        sum = 0
+        L = min(len(wages[i]), len(bases[i]))
+        empty = [0 if j == 0 else bases[i][j-1] for j in range(L+1)]
+        for j in range(L):
+            sum += wages[i][j][1]
+            empty[j+1] += sum
+        bases[i] = empty
+
+    S = 0
+    queue = []
+    for i, base in enumerate(bases):
+        if len(base) > 1:
+            heapq.heappush(queue, (base[1], i))
+
+    for _ in range(K):
+        val, index = heapq.heappop(queue)
+        
+        bases[index][0] += 1
+        S += val
+
+        if bases[index][0] < len(bases[index]) - 1:
+            newval = bases[index][bases[index][0] + 1] - bases[index][bases[index][0]]
+            heapq.heappush(queue, (newval, index))
+
+    return S
+
+runtests(cracked_more)
+
+
+
+
 

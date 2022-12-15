@@ -123,6 +123,12 @@ problems = [
     {"arg": make_sparse(200, 100, 280, 0.1, 5, 10, 4, 10, 10, 30, 5, 18),
     "hint": 9271
     },
+    {"arg": make_sparse(2000, 100, 280, 0.1, 5, 10, 4, 10, 10, 30, 5, 18),
+    "hint": 6545
+    },
+    {"arg": make_dense(400, 300, 3000, 5, 10, 4, 10, 10, 30, 5, 18),
+    "hint": 157335
+    },
 ]
 
 def printarg(N, M, K, base, wages, eq_cost):

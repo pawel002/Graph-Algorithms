@@ -9,16 +9,6 @@ from tester import tester
 
 (V, L) = loadDirectedWeightedGraph(os.path.abspath('lab4/graphs/chordal/AT'))     # wczytaj graf
 
-def LexBFS_(graph):
-    verticies = [0 for _ in range(len(graph))]
-    visited = [False for _ in range(len(graph))]
-    currlist = [0]
-
-    for i in range(len(graph)):
-        pass
-
-    return verticies
-
 def LexBFS(graph):
     verticies = [0 for _ in range(len(graph))]
     visited = [False for _ in range(len(graph))]
@@ -145,9 +135,4 @@ def checkLexBFS(G, vs):
 # tester(maxclique, 5,"lab4/graphs/maxclique")
 # tester(coloring, 5,"lab4/graphs/coloring")
 # tester(vcover, 5,"lab4/graphs/vcover")
-
-G = [[j for j in range(1000) if j!=i] for i in range(1000)]
-A = time.time()
-LexBFS(G)
-print(time.time() - A)
 
