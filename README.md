@@ -1,3 +1,3 @@
-﻿# Graph Algorithms
+# Graph Algorithms
  
- Solutions to Graph Algorithms course at AGH university.
+ Solutions to Graph Algorithms course exercises at AGH university.
